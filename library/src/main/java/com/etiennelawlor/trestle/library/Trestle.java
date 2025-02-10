@@ -32,6 +32,9 @@ import java.util.regex.PatternSyntaxException;
  */
 public class Trestle {
 
+    private Trestle() {
+    }
+
     // Set a single span
     public static SpannableString getFormattedText(Span span) {
         SpannableString ss = null;
@@ -74,7 +77,7 @@ public class Trestle {
             int caseSensitivity = -1;
 
             Regex regex = span.getRegex();
-            if(regex != null){
+            if (regex != null) {
                 regexString = regex.getText();
                 caseSensitivity = regex.getCaseSensitivity();
             }
@@ -85,7 +88,7 @@ public class Trestle {
 
                 Pattern pattern = null;
                 try {
-                    switch (caseSensitivity){
+                    switch (caseSensitivity) {
                         case Regex.CASE_INSENSITIVE:
                             pattern = Pattern.compile(regexString, Pattern.CASE_INSENSITIVE);
                             break;
@@ -95,11 +98,11 @@ public class Trestle {
                         default:
                             break;
                     }
-                } catch (PatternSyntaxException e){
+                } catch (PatternSyntaxException e) {
                     e.printStackTrace();
                 }
 
-                if(pattern != null){
+                if (pattern != null) {
                     Matcher matcher = pattern.matcher(text);
                     while (matcher.find()) {
 
@@ -148,10 +151,10 @@ public class Trestle {
         int fgColor = span.getForegroundColor();
         if (fgColor != 0) {
             ss.setSpan(
-                new ForegroundColorSpan(fgColor),
-                start,
-                end,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    new ForegroundColorSpan(fgColor),
+                    start,
+                    end,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
     }
 
@@ -159,10 +162,10 @@ public class Trestle {
         int bgColor = span.getBackgroundColor();
         if (bgColor != 0) {
             ss.setSpan(
-                new BackgroundColorSpan(bgColor),
-                start,
-                end,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    new BackgroundColorSpan(bgColor),
+                    start,
+                    end,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
     }
 
@@ -170,10 +173,10 @@ public class Trestle {
         Typeface typeface = span.getTypeface();
         if (typeface != null) {
             ss.setSpan(
-                new CustomTypefaceSpan("", typeface),
-                start,
-                end,
-                Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+                    new CustomTypefaceSpan("", typeface),
+                    start,
+                    end,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
     }
 
@@ -181,10 +184,10 @@ public class Trestle {
         float relativeSize = span.getRelativeSize();
         if (Float.floatToRawIntBits(relativeSize) != 0) {
             ss.setSpan(
-                new RelativeSizeSpan(relativeSize),
-                start,
-                end,
-                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    new RelativeSizeSpan(relativeSize),
+                    start,
+                    end,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
     }
 
@@ -192,40 +195,40 @@ public class Trestle {
         int absoluteSize = span.getAbsoluteSize();
         if (absoluteSize != 0) {
             ss.setSpan(
-                new AbsoluteSizeSpan(absoluteSize, true),
-                start,
-                end,
-                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    new AbsoluteSizeSpan(absoluteSize, true),
+                    start,
+                    end,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
     }
 
     private static void setUpUrlSpan(Span span, SpannableString ss, String text, int start, int end) {
         if (span.isUrl()) {
             ss.setSpan(
-                new URLSpan(text),
-                start,
-                end,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    new URLSpan(text),
+                    start,
+                    end,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
     }
 
     private static void setUpUnderlineSpan(Span span, SpannableString ss, int start, int end) {
         if (span.isUnderline()) {
             ss.setSpan(
-                new UnderlineSpan(),
-                start,
-                end,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    new UnderlineSpan(),
+                    start,
+                    end,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
     }
 
     private static void setUpStrikethruSpan(Span span, SpannableString ss, int start, int end) {
         if (span.isStrikethru()) {
             ss.setSpan(
-                new StrikethroughSpan(),
-                start,
-                end,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    new StrikethroughSpan(),
+                    start,
+                    end,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
     }
 
@@ -233,30 +236,30 @@ public class Trestle {
         int quoteColor = span.getQuoteColor();
         if (quoteColor != 0) {
             ss.setSpan(
-                new QuoteSpan(quoteColor),
-                start,
-                end,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    new QuoteSpan(quoteColor),
+                    start,
+                    end,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
     }
 
     private static void setUpSubscriptSpan(Span span, SpannableString ss, int start, int end) {
         if (span.isSubscript()) {
             ss.setSpan(
-                new SubscriptSpan(),
-                start,
-                end,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    new SubscriptSpan(),
+                    start,
+                    end,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
     }
 
     private static void setUpSuperscriptSpan(Span span, SpannableString ss, int start, int end) {
         if (span.isSuperscript()) {
             ss.setSpan(
-                new SuperscriptSpan(),
-                start,
-                end,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    new SuperscriptSpan(),
+                    start,
+                    end,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
     }
 
@@ -264,10 +267,10 @@ public class Trestle {
         ClickableSpan clickableSpan = span.getClickableSpan();
         if (clickableSpan != null) {
             ss.setSpan(
-                clickableSpan,
-                start,
-                end,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    clickableSpan,
+                    start,
+                    end,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
     }
 
@@ -275,10 +278,10 @@ public class Trestle {
         float scaleX = span.getScaleX();
         if (Float.floatToRawIntBits(scaleX) != 0) {
             ss.setSpan(
-                new ScaleXSpan(scaleX),
-                start,
-                end,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    new ScaleXSpan(scaleX),
+                    start,
+                    end,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
     }
     // endregion
